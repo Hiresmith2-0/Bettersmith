@@ -35,7 +35,10 @@ app.use((err, req, res, next) => {
   const errorObj = Object.assign(defaultErr, err)
   return res.status((errorObj.status)).json(errorObj.message)
 })
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`Server listening on port: ${PORT} ...`)
+  })
+}
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port: ${PORT} ...`)
-})
+module.exports = app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
