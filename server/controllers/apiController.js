@@ -1,4 +1,6 @@
 const db = require('../models/models.js')
+const bcrypt = require('bcryptjs');
+const salt = bcrypt.genSaltSync(10);
 
 module.exports = {
   // All general api controllers will go here
@@ -14,20 +16,22 @@ module.exports = {
   //   }
   // }
 
-  getUserId: async (req, res, next) => {
-    try {
-      const { id } = req.params
-      const text = 'SELECT * FROM users WHERE user_id = $1'
-      const values = [id]
-      const data = await db.query(text, values)
-      res.locals.rows = data.rows[0]
-      return next()
-    } catch (err) {
-      console.log(err)
-      next(err)
-    }
-  },
+  // middleware for getting user id of logged in user
+  // getUserId: async (req, res, next) => {
+  //   try {
+  //     const { id } = req.params
+  //     const text = 'SELECT * FROM users WHERE user_id = $1'
+  //     const values = [id]
+  //     const data = await db.query(text, values)
+  //     res.locals.rows = data.rows[0]
+  //     return next()
+  //   } catch (err) {
+  //     console.log(err)
+  //     next(err)
+  //   }
+  // },
 
+  // middleware for getting existing applications that logged in user has posted
   getUsersApplications: async (req, res, next) => {
     const { id: userId } = req.params
     try {
@@ -39,6 +43,8 @@ module.exports = {
     }
   },
 
+  // TODO: create a variable that will automatically add a proper time instead of destructuring the createdate property on the req.body object
+  // middleware for adding a new application
   addApplication: async (req, res, next) => {
     const {
       userId, companyname, status, priority, createddate,
@@ -59,6 +65,7 @@ module.exports = {
     }
   },
 
+  // middleware for getting application id for selected application
   getApplicationsId: async (req, res, next) => {
     const { id } = req.params
     try {
@@ -70,16 +77,47 @@ module.exports = {
     }
   },
 
+  // middleware for adding a new user to the db
   addNewUser: async (req, res, next) => {
-    const { firstname, lastname, age } = req.body
+    const { firstname, lastname, username, password } = req.body
+    bcrypt.hash(password, salt, function (err, hash) {
+      if (err) {
+        console.log('whoops')
+        return next(err)
+      }
+      db.query('INSERT INTO users (firstname, lastname, username, password) VALUES ($1, $2, $3, $4)', [firstname, lastname, username, hash])
+      return next()
+    })
+    // await db.query('INSERT INTO users (firstname, lastname, username, password) VALUES ($1, $2, $3, $4)', [firstname, lastname, username, ]) // 'CREATE USER WITH VALUES
+  },
+
+  getUserInfo: async (req, res, next) => {
+    const { username } = req.body
     try {
-      await db.query('INSERT INTO users (firstname, lastname, age) VALUES ($1, $2, $3)', [firstname, lastname, age]) // 'CREATE USER WITH VALUES
-      next()
+      const data = await db.query('SELECT * FROM users WHERE username = $1', [username])
+      res.locals.dataStore = data.rows[0]
+      return next()
     } catch (err) {
-      next(err)
+      console.log('Sorry, this username could not be found')
+      return next(err)
     }
   },
 
+  loginCheck: async (req, res, next) => {
+    const { inputPassword } = req.body
+    const { password } = res.locals.dataStore
+    bcrypt.compare(inputPassword, password, function (err, response) {
+      if (err) {
+        console.log('Was not able to compare password')
+        return next(err)
+      }
+      res.locals.loginResult = response
+      return next()
+    })
+  },
+
+  // TODO: add an update feature with a put request for the application
+  // middleware for updating application information
   updateApplication: async (req, res, next) => {
     const { application_id, user_id, companyname, status, priority, createddate, notes, posting } = req.body
     console.log(req.body)
@@ -95,6 +133,7 @@ module.exports = {
     }
   },
 
+  // middleware for deleting an application
   deleteApplications: async (req, res, next) => {
     const { id } = req.params
     try {
