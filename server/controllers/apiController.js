@@ -1,6 +1,6 @@
 const db = require('../models/models.js')
-const bcrypt = require('bcryptjs');
-const salt = bcrypt.genSaltSync(10);
+const bcrypt = require('bcryptjs')
+const salt = bcrypt.genSaltSync(10)
 
 module.exports = {
   // All general api controllers will go here
@@ -17,19 +17,19 @@ module.exports = {
   // }
 
   // middleware for getting user id of logged in user
-  // getUserId: async (req, res, next) => {
-  //   try {
-  //     const { id } = req.params
-  //     const text = 'SELECT * FROM users WHERE user_id = $1'
-  //     const values = [id]
-  //     const data = await db.query(text, values)
-  //     res.locals.rows = data.rows[0]
-  //     return next()
-  //   } catch (err) {
-  //     console.log(err)
-  //     next(err)
-  //   }
-  // },
+  getUserId: async (req, res, next) => {
+    try {
+      const { id } = req.params
+      const text = 'SELECT * FROM users WHERE user_id = $1'
+      const values = [id]
+      const data = await db.query(text, values)
+      res.locals.rows = data.rows[0]
+      return next()
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
+  },
 
   // middleware for getting existing applications that logged in user has posted
   getUsersApplications: async (req, res, next) => {
@@ -77,25 +77,34 @@ module.exports = {
     }
   },
 
-  // middleware for adding a new user to the db
+  // middleware for adding a new user to the db through signup
   addNewUser: async (req, res, next) => {
-    const { firstname, lastname, username, password } = req.body
-    bcrypt.hash(password, salt, function (err, hash) {
-      if (err) {
-        console.log('whoops')
-        return next(err)
-      }
-      db.query('INSERT INTO users (firstname, lastname, username, password) VALUES ($1, $2, $3, $4)', [firstname, lastname, username, hash])
-      return next()
-    })
+    const { firstname, lastname, username, inputPassword } = req.body
+    const user = await db.query('SELECT username FROM users WHERE username = $1', [username])
+    console.log(user.rows)
+    if (user.rows <= 0) {
+      bcrypt.hash(inputPassword, salt, function (err, hash) {
+        if (err) {
+          console.log('whoops')
+          return next(err)
+        }
+        db.query('INSERT INTO users (firstname, lastname, username, password) VALUES ($1, $2, $3, $4)', [firstname, lastname, username, hash])
+        return next()
+      })
+    } else {
+      console.log('This username already exists')
+      return next('error')
+    }
     // await db.query('INSERT INTO users (firstname, lastname, username, password) VALUES ($1, $2, $3, $4)', [firstname, lastname, username, ]) // 'CREATE USER WITH VALUES
   },
 
+  // middleware for retrieving the user info based on the username
   getUserInfo: async (req, res, next) => {
     const { username } = req.body
     try {
       const data = await db.query('SELECT * FROM users WHERE username = $1', [username])
       res.locals.dataStore = data.rows[0]
+      console.log(res.locals.dataStore)
       return next()
     } catch (err) {
       console.log('Sorry, this username could not be found')
@@ -103,6 +112,7 @@ module.exports = {
     }
   },
 
+  // moddleware for checking if the password of a given username matches the encrypted version of said password
   loginCheck: async (req, res, next) => {
     const { inputPassword } = req.body
     const { password } = res.locals.dataStore

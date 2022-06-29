@@ -9,9 +9,9 @@ const router = express.Router()
 // })
 
 // get user id route handler
-// router.get('/users/:id', apiController.getUserId, (req, res) => {
-//   res.status(200).json(res.locals.rows)
-// })
+router.get('/users/:id', apiController.getUserId, (req, res) => {
+  res.status(200).json(res.locals.rows)
+})
 
 // get applications route handler
 router.get('/users/applications/:id', apiController.getUsersApplications, (req, res) => {
