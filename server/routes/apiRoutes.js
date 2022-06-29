@@ -23,7 +23,7 @@ router.post('/applications', apiController.addApplication, (req, res) => {
 router.get('/applications/:id', apiController.getApplicationsId, (req, res) => {
   res.json(res.locals.applicationsId)
 })
-
+// ideally, change this to put instead of post
 router.post('/users', apiController.addNewUser, (req, res) => {
   res.send('Post Successful!')
 })
