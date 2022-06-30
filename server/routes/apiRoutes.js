@@ -8,32 +8,49 @@ const router = express.Router()
 //   res.send('no bugs')
 // })
 
+// get user id route handler
 router.get('/users/:id', apiController.getUserId, (req, res) => {
   res.status(200).json(res.locals.rows)
 })
 
+// get applications route handler
 router.get('/users/applications/:id', apiController.getUsersApplications, (req, res) => {
   res.json(res.locals.applications)
 })
 
+// add application route handler
 router.post('/applications', apiController.addApplication, (req, res) => {
   res.send('Post Successful!')
 })
 
+// get application id route handler
 router.get('/applications/:id', apiController.getApplicationsId, (req, res) => {
   res.json(res.locals.applicationsId)
 })
 
-router.post('/users', apiController.addNewUser, (req, res) => {
-  res.send('Post Successful!')
+// ideally, change this to put instead of post
+// add new user route handler
+router.put('/users', apiController.addNewUser, (req, res) => {
+  res.send('User created successfully!')
 })
 
+// update application route handler
 router.put('/users/applications/:id', apiController.updateApplication, (req, res) => {
   res.send('Put Successful!')
 })
 
+// delete application route handler
 router.delete('/applications/:id', apiController.deleteApplications, (req, res) => {
   res.send('Delete Successful!')
+})
+
+// post user password for comparison
+router.post('/login', apiController.getUserInfo, apiController.loginCheck, (req, res) => {
+<<<<<<< HEAD
+  res.send(res.locals)
+=======
+  res.send(res.locals.loginResult)
+>>>>>>> b5a413c49c2549093f025724a181ebdc232f4b0a
 })
 
 module.exports = router

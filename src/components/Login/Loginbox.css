@@ -1,0 +1,52 @@
+body{
+    background: rgb(236, 236, 233);
+}
+
+#login-mainbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 800px;
+}
+
+h2 {
+    font-size: 60px;
+    font-weight: bold;
+    color: black; 
+    font-family: 'Ubuntu', sans-serif;
+  }
+
+#signin-form {
+    background-color: rgba(40, 20, 84, 0.728);
+    padding: 8rem;
+    border-radius: 5px;
+}
+
+#username {
+    margin-bottom: 1rem;
+}
+
+#password {
+    margin-bottom: 1rem;
+}
+
+#signuplink {
+    margin-left: 1.1rem;
+}
+
+#loginbtn {
+    padding: 2px 20px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#signuplink {
+    text-decoration: none;
+    font-family: 'Ubuntu', sans-serif;
+    color: white;
+    font-size: 0.8rem;
+}
+
+#signuplink:hover {
+    border-color: azure;
+}
