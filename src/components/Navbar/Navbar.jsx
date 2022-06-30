@@ -13,7 +13,7 @@ export default function Navbar () {
               Home
             </a>
           </button>
-        <button className="joblist" >
+        <button className="joblist">
           <a href="#">
             Job List
           </a>
@@ -23,7 +23,7 @@ export default function Navbar () {
             Application History
           </a>
         </button>
-        <button className="docs">
+        <button className="docs" >
           <Link to='/documents'>
             <p>Docs</p>
           </Link>

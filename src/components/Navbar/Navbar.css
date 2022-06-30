@@ -19,7 +19,6 @@
   padding: 1.5rem;
   margin-bottom: 0px;
   height: 70px;
-<<<<<<< HEAD
   background: rgb(70,65,167);
   background: rgb(104,91,142);
   background: linear-gradient(302deg, rgba(104,91,142,1) 0%, rgba(40,20,84,0.9094231442577031) 100%);
@@ -31,16 +30,6 @@
   color: white;
   background: transparent;
   border: none;
-=======
-  background-color: rgba(40, 20, 84, 0.728)
-}
-
-.homepage p {
-  font-family: var(--font);
-  font-size: var(--fontsize);
-  color: white;
-  margin-top: 1.5rem;
->>>>>>> dev
 }
 
 .joblist {
