@@ -104,6 +104,10 @@ module.exports = {
     try {
       const data = await db.query('SELECT * FROM users WHERE username = $1', [username])
       res.locals.dataStore = data.rows[0]
+<<<<<<< HEAD
+=======
+      console.log(res.locals.dataStore)
+>>>>>>> b5a413c49c2549093f025724a181ebdc232f4b0a
       return next()
     } catch (err) {
       console.log('Sorry, this username could not be found')
