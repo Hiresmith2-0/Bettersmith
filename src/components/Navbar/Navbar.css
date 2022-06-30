@@ -1,11 +1,7 @@
 /* green color:  */
 :root {
-  --font: 'Source Sans Pro',
-    sans-serif;
-  --blue: #0f3181;
-  --light-green: #4872a8;
-  --fontsize: 20px;
-  --font-color: rgb(89, 114, 107);
+  --font: 'Ubuntu', sans-serif;
+  --fontsize: 1.2rem;
 }
 
 #div {
@@ -14,58 +10,53 @@
   top: 0;
   left: 0;
   right: 0;
-
 }
 
 #navbar {
   display: flex;
   justify-content: space-evenly;
   flex-basis: center;
-  padding: 2rem 0rem 2rem 1rem;
+  padding: 1.5rem;
   margin-bottom: 0px;
   height: 70px;
-  background-color: var(--blue)
+  background: rgb(70,65,167);
+  background: rgb(104,91,142);
+  background: linear-gradient(302deg, rgba(104,91,142,1) 0%, rgba(40,20,84,0.9094231442577031) 100%);
 }
 
 .homepage {
-  background-color: lightgray;
   font-family: var(--font);
-  padding: 0.5rem 1rem;
   font-size: var(--fontsize);
-  border: 0px;
-  border-radius: 4px;
-  color: var(--font-color);
+  color: white;
+  background: transparent;
+  border: none;
 }
 
 .joblist {
-  background-color: lightgray;
   font-family: var(--font);
-  padding: 0.3rem 1rem;
   font-size: var(--fontsize);
-  border: 0px;
-  border-radius: 4px;
-  color: var(--font-color);
+  color: white;
+  background: transparent;
+  border: none;
 }
 
 .apphistory {
-  background-color: lightgray;
   font-family: var(--font);
-  padding: 0.3rem 1rem;
   font-size: var(--fontsize);
-  border: 0px;
-  border-radius: 4px;
-  color: var(--font-color);
+  color: white;
+  background: transparent;
+  border: none;
 }
 
+
 .docs {
-  background-color: lightgray;
   font-family: var(--font);
-  padding: 0.5rem 1rem;
   font-size: var(--fontsize);
-  border: 0px;
-  border-radius: 3px;
-  color: var(--font-color);
+  color: white;
+  background: transparent;
+  border: none;
 }
+
 
 #navbar a {
   text-decoration: none;
@@ -73,6 +64,8 @@
 }
 
 #img {
-  width: 260px;
-  height: fill;
+  width: 300px;
+  /* height: fill; */
 }
+
+

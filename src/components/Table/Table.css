@@ -1,30 +1,38 @@
 table {
-    width: 80%;
+    width: 90%;
     border-collapse: collapse;
-    border: 3px solid rgb(58, 58, 185);
+    border: 0.5px solid rgba(154, 153, 159, 0.857);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color:rgb(225, 222, 227)
   }
   
   th {
     padding: 20px;
     text-align: center;
-    border: 3px solid;
+    /* border: 0.5px solid rgba(46, 11, 219, 0.857); */
     border-left: none;
     border-right: none;
+    background-color:rgb(225, 222, 227)
 
-    border-color: rgb(33, 33, 187);
       
   }
 
   td {
     padding: 20px;
     text-align: center;
-    border: 1px solid;  
-    font-size: large;
+    font-size: 1rem;
     font: Serif;
+    
+    /* border: 0.5px solid rgba(48, 20, 188, 0.857);
+     */
+
   }
 
   tr {
-    font-size: large;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1rem;
     font: Serif;
+    border: 0.5px solid rgba(154, 153, 159, 0.857);
+    background-color:rgba(251, 251, 251, 0.845)
   }
   

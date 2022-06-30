@@ -8,9 +8,11 @@ export default function Navbar () {
     <div id="div">
       <nav id="navbar">
         <img id='img' src={img}></img>
-          <Link className="homepage" to='/'>
-            <p>Home</p>
-          </Link>
+          <button className="homepage" >
+            <a href="/home">
+              Home
+            </a>
+          </button>
         <button className="joblist" >
           <a href="#">
             Job List
