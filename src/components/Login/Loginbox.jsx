@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Loginbox.css'
-import img from '../../img/bettersmithlogo.png'
+import img from '../../img/hiresmith.png'
 
 const useInput = (initial) => {
   const [value, setValue] = useState(initial)
@@ -35,7 +35,7 @@ export default function LoginBox () {
     })
       .then((data) => {
         console.log('res: ', data)
-        data.json()
+        return data.json()
       })
       .then((data) => {
         console.log('hereee')
@@ -50,14 +50,13 @@ export default function LoginBox () {
 
   return (
     <div id='login-mainbox'>
-        {/* <img src={img} id="bettersmith-logo"></img> */}
-        <h2>BetterSmith</h2>
         <div id ='signin-form'>
+          <img src={img} id="bettersmith-logo"></img>
           <form>
             <input type='text' placeholder='username' id='username' onChange={usernameOnChange} /><br/>
             <input type='password' placeholder='password' id='inputPassword' onChange={passwordOnChange}/><br/>
             {/* <input type='submit' value="Log In" id='loginbtn'/> */}
-            <button id='sign-in' onClick={signIn}>Sign In</button>
+            <button id='loginbtn' onClick={signIn}>Log In</button>
             {/* <input id="signupinput" type='submit' value='signin' onClick={signIn} /> */}
             <a href='./signup' id='signuplink'>Sign up</a>
             {/* <button id='sign-up'>Sign Up</button> */}
