@@ -32,12 +32,12 @@ export default function Row ({
   return (
             <>
              <tr>
-              <td>{createddate}</td>
-              <td>{companyname}</td>
-              <td onClick={() => setNotesOpen(!notesOpen)}>{status}</td>
-              <td>{notes}</td>
-              <td>{posting}</td>
-              <td><button onClick={deleteApplication}>Delete</button></td>
+              <td className='rowcell'>{createddate}</td>
+              <td className='rowcell'>{companyname}</td>
+              <td className='rowcell' >{status}</td>
+              <td className='rowcell'>{notes}</td>
+              <td className='rowcell' >{posting}</td>
+              <td><button onClick={deleteApplication} id='deletebtn'>Delete</button></td>
             </tr>
             <tr>
               {notesOpen ? <Notes notes={notes}/> : null}
