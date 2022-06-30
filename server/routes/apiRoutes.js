@@ -46,7 +46,7 @@ router.delete('/applications/:id', apiController.deleteApplications, (req, res) 
 
 // post user password for comparison
 router.post('/login', apiController.getUserInfo, apiController.loginCheck, (req, res) => {
-  res.send(res.locals.loginResult)
+  res.send(res.locals)
 })
 
 module.exports = router

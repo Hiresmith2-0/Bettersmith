@@ -104,7 +104,6 @@ module.exports = {
     try {
       const data = await db.query('SELECT * FROM users WHERE username = $1', [username])
       res.locals.dataStore = data.rows[0]
-      console.log(res.locals.dataStore)
       return next()
     } catch (err) {
       console.log('Sorry, this username could not be found')
@@ -112,7 +111,7 @@ module.exports = {
     }
   },
 
-  // moddleware for checking if the password of a given username matches the encrypted version of said password
+  // middleware for checking if the password of a given username matches the encrypted version of said password
   loginCheck: async (req, res, next) => {
     const { inputPassword } = req.body
     const { password } = res.locals.dataStore
@@ -121,7 +120,13 @@ module.exports = {
         console.log('Was not able to compare password')
         return next(err)
       }
-      res.locals.loginResult = response
+      console.log(response)
+      if (response === true) {
+        res.locals.loginResult = 42
+      } else {
+        res.locals.loginResult = 24
+      }
+      console.log(res.locals.loginResult)
       return next()
     })
   },

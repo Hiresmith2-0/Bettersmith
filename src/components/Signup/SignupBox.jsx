@@ -11,19 +11,21 @@ const useInput = (initial) => {
 
 export default function SignupBox (props) {
   const [username, usernameOnChange] = useInput('')
-  const [password, passwordOnChange] = useInput('')
-  const [firstName, firstNameOnChange] = useInput('')
-  const [lastName, lastNameOnChange] = useInput('')
+  const [inputPassword, passwordOnChange] = useInput('')
+  const [firstname, firstNameOnChange] = useInput('')
+  const [lastname, lastNameOnChange] = useInput('')
 
   const saveUser = () => {
+    console.log('saveuser')
     const body = {
       username,
-      password,
-      firstName,
-      lastName
+      inputPassword,
+      firstname,
+      lastname
     }
-    fetch('/api/signup', {
-      method: 'POST',
+
+    fetch('/api/users', {
+      method: 'PUT',
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json'
@@ -40,7 +42,7 @@ export default function SignupBox (props) {
       <h2>BetterSmith</h2>
       <h3>Sign Up</h3>
       <div id='signup-form'>
-        <form method='POST' action='/signup' id="signupboxform">
+        <form id="signupboxform">
           <input
             type='text'
             placeholder='First Name'

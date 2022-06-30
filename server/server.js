@@ -20,8 +20,8 @@ app.get('/', (req, res) => {
 })
 // route handler to respond with documents page
 app.get('/documents', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'));
-});
+  return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'))
+})
 
 // define route handlers
 app.use('/api', apiRoutes)
