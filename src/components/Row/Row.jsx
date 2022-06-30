@@ -34,7 +34,7 @@ export default function Row ({
              <tr>
               <td className='rowcell'>{createddate}</td>
               <td className='rowcell'>{companyname}</td>
-              <td className='rowcell' >{status}</td>
+              <td className='rowcell'>{status}</td>
               <td className='rowcell'>{notes}</td>
               <td className='rowcell' >{posting}</td>
               <td><button onClick={deleteApplication} id='deletebtn'>Delete</button></td>

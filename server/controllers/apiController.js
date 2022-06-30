@@ -71,7 +71,7 @@ module.exports = {
     try {
       const data = await db.query('SELECT * FROM applications WHERE application_id = $1', [id])
       res.locals.applicationsId = data.rows[0]
-      next()
+      return next()
     } catch (err) {
       next(err)
     }
@@ -104,23 +104,14 @@ module.exports = {
     try {
       const data = await db.query('SELECT * FROM users WHERE username = $1', [username])
       res.locals.dataStore = data.rows[0]
-<<<<<<< HEAD
       console.log(res.locals.dataStore)
       return next();
-=======
-<<<<<<< HEAD
-=======
-      console.log(res.locals.dataStore)
->>>>>>> b5a413c49c2549093f025724a181ebdc232f4b0a
-      return next()
->>>>>>> dev
     } catch (err) {
       console.log('Sorry, this username could not be found')
       return next(err)
     }
   },
 
-<<<<<<< HEAD
 
  // if (err) {//   console.log('Was not able to compare password')//   return next(err)// }
 //e.log(response)
@@ -132,13 +123,11 @@ module.exports = {
   // console.log(res.locals.loginResult)
   // next()
 
-=======
->>>>>>> dev
+
   // middleware for checking if the password of a given username matches the encrypted version of said password
   loginCheck: async (req, res, next) => {
     const { inputPassword } = req.body
     const { password } = res.locals.dataStore
-<<<<<<< HEAD
     await bcrypt.compare(inputPassword, password)
       .then((response) => {
         res.locals.loginResult = response
@@ -148,22 +137,21 @@ module.exports = {
       .catch((err) => {
         return next(err)
       });
-=======
-    bcrypt.compare(inputPassword, password, function (err, response) {
-      if (err) {
-        console.log('Was not able to compare password')
-        return next(err)
-      }
-      console.log(response)
-      if (response === true) {
-        res.locals.loginResult = 42
-      } else {
-        res.locals.loginResult = 24
-      }
-      console.log(res.locals.loginResult)
-      return next()
-    })
->>>>>>> dev
+
+    // bcrypt.compare(inputPassword, password, function (err, response) {
+    //   if (err) {
+    //     console.log('Was not able to compare password')
+    //     return next(err)
+    //   }
+    //   console.log(response)
+    //   if (response === true) {
+    //     res.locals.loginResult = 42
+    //   } else {
+    //     res.locals.loginResult = 24
+    //   }
+    //   console.log(res.locals.loginResult)
+    //   return next()
+    // })
   },
 
   // TODO: add an update feature with a put request for the application
