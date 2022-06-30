@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{
   background: whitesmoke;
   display: flex;
@@ -94,3 +95,36 @@ body{
     margin-left: 17px;
 }
 
+=======
+#signupboxform {
+    padding:  40px 30px; 
+    background:  rgba(40, 20, 84, 0.728); 
+    display:  flex; 
+    flex-direction:  column;
+    align-items:  flex-start; 
+    padding: 7rem;
+    border-radius: 5px;
+}
+
+.group {
+  position: relative;
+  margin: 45px 0;
+}
+
+#signupinput {
+    text-align: center;
+    font-size:  16px; 
+    padding:  20px 0px; 
+    height:  40px; 
+    border:  none; 
+    border-bottom:  solid 1px rgba(0,0,0,.1); 
+    background:  rgb(236, 236, 233); 
+    width:  250px; 
+    box-sizing:  border-box; 
+    transition:  all .3s linear; 
+    color:  rgba(40, 20, 84, 0.728); 
+    font-weight:  400;
+    -webkit-appearance:  none; 
+    margin-bottom: 10%;
+  }
+>>>>>>> dev

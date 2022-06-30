@@ -1,25 +1,38 @@
 table {
     width: 90%;
     border-collapse: collapse;
+<<<<<<< HEAD
     border: 0.5px solid rgba(154, 153, 159, 0.857);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     background-color:rgb(225, 222, 227)
+=======
+    border: 3px solid rgba(40, 20, 84, 0.728);
+>>>>>>> dev
   }
   
   th {
     padding: 20px;
     text-align: center;
+<<<<<<< HEAD
     /* border: 0.5px solid rgba(46, 11, 219, 0.857); */
+=======
+    border: 2px solid;
+>>>>>>> dev
     border-left: none;
     border-right: none;
     background-color:rgb(225, 222, 227)
 
+<<<<<<< HEAD
+=======
+    border-color: rgba(40, 20, 84, 0.728);
+>>>>>>> dev
       
   }
 
   td {
     padding: 20px;
     text-align: center;
+<<<<<<< HEAD
     font-size: 1rem;
     font: Serif;
     
@@ -34,5 +47,18 @@ table {
     font: Serif;
     border: 0.5px solid rgba(154, 153, 159, 0.857);
     background-color:rgba(251, 251, 251, 0.845)
+=======
+    border: 2px solid;  
+    font-size: large;
+    font: Serif;
+    border-color: rgba(40, 20, 84, 0.728)
+  }
+
+  tr {
+    font-size: large;
+    border: 2px solid;
+    font: Serif;
+    border-color: rgba(40, 20, 84, 0.728)
+>>>>>>> dev
   }
   
