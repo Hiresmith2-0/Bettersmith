@@ -1,44 +1,48 @@
-const express = require('express');
-const path = require('path');
+const path = require('path')
+const express = require('express')
 
-const apiRoutes = require('./routes/apiRoutes.js');
+const app = express()
+const PORT = 3000
 
-const app = express();
-const PORT = 3000;
-app.use(express.json()); // built in middleware parsing incoming JSON requests and puts parsed data in req.body
-app.use(express.urlencoded({ extended: true }));
+// require routers
+const apiRoutes = require('./routes/apiRoutes.js')
 
-// running a get request sending dist/index to server.
-app.use(express.static(path.join(__dirname, '../dist')));
+// handle parsing request body
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
+// handle requests for static files
+app.use(express.static(path.join(__dirname, '../dist')))
+
+// route handler to respond with main app
 app.get('/', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'));
-});
-
+  return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'))
+})
+// route handler to respond with documents page
 app.get('/documents', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
-// All api requests will go through here
-app.use('/api', apiRoutes);
+// define route handlers
+app.use('/api', apiRoutes)
 
-// local error handler
-app.use((req, res) => res.sendStatus(404));
+// catch-all route handler for any requests to unknown routes
+app.use((req, res) => res.sendStatus(404))
 
-// global error handler;
+// global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Error handler caught middleware error',
     status: 500,
-    message: { err: 'An error occured' },
-  };
-  const errorObj = Object.assign(defaultErr, err);
-  return res.status(errorObj.status).json(errorObj.message);
-});
+    message: { err: 'An error occured' }
+  }
+  const errorObj = Object.assign(defaultErr, err)
+  return res.status((errorObj.status)).json(errorObj.message)
+})
 // if (process.env.NODE_ENV !== 'test') {
 // app.listen(PORT, () => {
-//   console.log(`Server listening on port: ${PORT} ...`);
-// });
+//   console.log(`Server listening on port: ${PORT} ...`)
+// })
 // }
 
-module.exports = app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+module.exports = app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
