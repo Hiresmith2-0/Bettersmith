@@ -1,7 +1,10 @@
-input {
-  /*
-  Add this when adding to table
+#addbtn {
   border: none;
-  */
-  outline: none
+  background: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#addbtn:hover {
+  color: purple;
 }

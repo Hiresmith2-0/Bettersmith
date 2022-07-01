@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import './Row.css'
 
 import Notes from '../Notes/Notes.jsx'
 import { deleteApplicationActionCreator } from '../../actions/actions.js'
@@ -29,15 +30,18 @@ export default function Row ({
     }
   }
 
+  let formattedDate = new Date(createddate)
+  formattedDate = formattedDate.toLocaleDateString()
+
   return (
             <>
              <tr>
-              <td className='rowcell'>{createddate}</td>
+              <td className='rowcell'>{formattedDate}</td>
               <td className='rowcell'>{companyname}</td>
               <td className='rowcell'>{status}</td>
               <td className='rowcell'>{notes}</td>
               <td className='rowcell' >{posting}</td>
-              <td><button onClick={deleteApplication} id='deletebtn'>Delete</button></td>
+              <td><button id='thedeletebtn' onClick={deleteApplication}><span class="material-symbols-outlined">delete</span></button></td>
             </tr>
             <tr>
               {notesOpen ? <Notes notes={notes}/> : null}

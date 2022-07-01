@@ -1,8 +1,16 @@
-#deletebtn {
-    
+#thedeletebtn {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
 }
+
+#thedeletebtn:hover {
+    color: purple;
+  }
 
 .rowcell {
     font-family: 'Nanum Gothic', sans-serif;
     font-size: 0.9rem;
 }
+

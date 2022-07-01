@@ -1,20 +1,21 @@
 // import { hasExpectedRequestMetadata } from '@reduxjs/toolkit/dist/matchers';
-import React from 'react';
-import { Provider } from 'react-redux';
-import { screen } from '@testing-library/react'
-import { render, screen, waitFor } from '@testing-library/react';
-import regeneratorRuntime from 'regenerator-runtime';
-import store from '../src/store';
-import App from '../src/App';
-import Login from '../src/pages/Login/login.jsx';
+import React from 'react'
+import { Provider } from 'react-redux'
+// import { screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
+import regeneratorRuntime from 'regenerator-runtime'
+import store from '../src/store'
+import App from '../src/App'
+import Login from '../src/pages/Login/login.jsx'
 
 describe('Unit testing Login Page', () => {
-  beforeEach(async () => {
-    const app = await render(
-      <Provider>
-        <Login />
-      </Provider>)
-  })
+  render(<App />)
+  // beforeEach(async () => {
+  //   const app = await render(
+  //     <Provider>
+  //       <Login />
+  //     </Provider>)
+  // })
 
   test('Renders the pass-in text with the label', () => {
     expect(screen.getByText('Sign in').nextSibling).toBeEmptyDOMElement()
