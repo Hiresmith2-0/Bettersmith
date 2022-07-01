@@ -37,7 +37,7 @@ export default function AddApplication ({
   return (
     <tr>
       {inputs}
-      <td><button onClick={addApplication}>Add</button></td>
+      <td><button id='addbtn' onClick={addApplication}><span class="material-symbols-outlined">add</span></button></td>
     </tr>
   )
 }
